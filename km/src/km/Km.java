@@ -203,13 +203,30 @@ public class Km {
         // a fennmaradó < 10km -t hozzáadjuk a lista pl. negyedik eleméhez
         uticelok.get(4).setKorrekcio(ELOIRTKM - getUticelListaOsszKm(uticelok));
     }
+    
+    public static void general2() {
+        double atlagKm = ELOIRTKM / MUNKANAPOK;
+        System.out.println("Átlag km: " + atlagKm);
+        String tmp[] = randomTavolsagAdat(tavolsagok);
+        
+        while (Integer.parseInt(tmp[1]) < atlagKm) {
+            while (getUticelListaVarosKmVane(uticelok, tmp)) {
+                    tmp = randomTavolsagAdat(tavolsagok);
+                }
+            tmp = randomTavolsagAdat(tavolsagok);
+        }
+        
+        for (String tmp1 : tmp) {
+            System.out.println(tmp1);
+        }
+    }
 
     public static void main(String[] args) throws IOException {
         // TODO code application logic here
 
         //tavolsagListaFeltolt("tavolsag.txt");
         test();
-        general();
+        general2();
         getUticelListaAdatok(uticelok);
     }
 
